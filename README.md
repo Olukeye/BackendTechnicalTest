@@ -2,8 +2,8 @@
 
 ASP.NET Core 8 solution for the back-end practical test:
 
-1. **Score calculation** — score an integer array (+1 even, +3 odd, +5 bonus every time `8` appears).
-2. **Phone → country/operator lookup** — an in-memory-seeded Web API that detects a phone number's
+1. **Score calculation** score an integer array (+1 even, +3 odd, +5 bonus every time `8` appears).
+2. **Phone → country/operator lookup** an in-memoryseeded Web API that detects a phone number's
    country dialing code and returns the country plus its mobile network operators.
 
 ## Architecture
@@ -25,7 +25,7 @@ PhoneCountryApi.sln
   `IScoreCalculatorService` / `ICountryLookupService` interfaces, not concrete classes, so the
   logic is unit-testable without spinning up ASP.NET Core.
 - **Database**: `Microsoft.EntityFrameworkCore.InMemory`, seeded via `HasData` in
-  `AppDbContext.OnModelCreating` directly from Figure 1 (Country) and Figure 2 (Country Details) —
+  `AppDbContext.OnModelCreating` directly from Figure 1 (Country) and Figure 2 (Country Details)
   no external DB required.
 - **Error handling**: a single `ExceptionHandlingMiddleware` maps `CountryNotFoundException` → 404
   and `InvalidPhoneNumberException` → 400, both as RFC 7807 `ProblemDetails`, so controllers stay
@@ -85,7 +85,7 @@ curl http://localhost:5080/api/v1/countries/2348033432323
 }
 ```
 
-The endpoint also accepts a leading `+` or `00` international dial-out prefix
+The endpoint also accepts a leading `+` or `00` international dial out prefix
 (`+2348033432323`, `002348033432323`). An unmatched code returns `404`; a non-numeric input
 returns `400`.
 
@@ -94,7 +94,7 @@ returns `400`.
 - **Country code matching** uses longest-prefix matching against the seeded dialing codes, so
   codes that share a leading digit (e.g. `233` Ghana vs `234` Nigeria) resolve correctly even
   though the current data set only has 3-digit codes this keeps the logic correct if
-  differently-sized codes are added later.
+  differently sized codes are added later.
 - **Score rule**: `8` counts once as an even number (+1) *and* separately triggers the "every
   time you encounter an 8" bonus (+5), which is what makes `[8,8] → 12` correct
   (2 × 1 for even, plus 2 × 5 for the bonus).

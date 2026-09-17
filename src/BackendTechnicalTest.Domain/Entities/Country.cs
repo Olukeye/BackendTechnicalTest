@@ -10,7 +10,6 @@ public class Country
 {
     private Country()
     {
-        // Required by EF Core
     }
 
     public Country(

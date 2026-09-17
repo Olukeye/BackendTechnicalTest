@@ -13,12 +13,12 @@ Clean, layered architecture so each concern can be tested and changed independen
 ```
 PhoneCountryApi.sln
 ├── src/
-│   ├── PhoneCountryApi.Domain          # Entities: Country, CountryDetail (no dependencies)
-│   ├── PhoneCountryApi.Application     # DTOs, service interfaces, business logic, custom exceptions
-│   ├── PhoneCountryApi.Infrastructure  # EF Core InMemory DbContext (seeded from Figure 1 & 2), repository
-│   └── PhoneCountryApi.Api             # Controllers, DI wiring, Swagger, global exception middleware
+│   ├── PhoneCountryApi.Domain         
+│   ├── PhoneCountryApi.Application    
+│   ├── PhoneCountryApi.Infrastructure  
+│   └── PhoneCountryApi.Api             
 └── tests/
-    └── PhoneCountryApi.Tests           # xUnit + Moq unit tests for both tasks
+    └── PhoneCountryApi.Tests          
 ```
 
 - **Dependency direction**: Api → Infrastructure/Application → Domain. Controllers depend on

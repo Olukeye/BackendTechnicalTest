@@ -93,7 +93,7 @@ returns `400`.
 
 - **Country code matching** uses longest-prefix matching against the seeded dialing codes, so
   codes that share a leading digit (e.g. `233` Ghana vs `234` Nigeria) resolve correctly even
-  though the current data set only has 3-digit codes — this keeps the logic correct if
+  though the current data set only has 3-digit codes this keeps the logic correct if
   differently-sized codes are added later.
 - **Score rule**: `8` counts once as an even number (+1) *and* separately triggers the "every
   time you encounter an 8" bonus (+5), which is what makes `[8,8] → 12` correct
